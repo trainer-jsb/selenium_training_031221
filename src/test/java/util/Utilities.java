@@ -2,9 +2,10 @@ package util;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Properties;
+
 import org.apache.commons.io.FilenameUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -14,7 +15,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 
 public class Utilities {
 
@@ -30,14 +30,10 @@ public class Utilities {
 	/**
 	 * This method will return the string cell value from an excel
 	 * 
-	 * @param fPath
-	 *            Complete path for the excel with the file extension
-	 * @param sheetName
-	 *            Sheet name from which the data needs to be read
-	 * @param iRow
-	 *            Row number (not index)
-	 * @param iCol
-	 *            Column number (not index)
+	 * @param fPath            Complete path for the excel with the file extension
+	 * @param sheetName   Sheet name from which the data needs to be read
+	 * @param iRow          Row number (not index)
+	 * @param iCol           Column number (not index)
 	 * @return String value of the cell
 	 */
 	public String readFromExcel(String fPath, String sheetName, int iRow, int iCol) {
@@ -65,6 +61,26 @@ public class Utilities {
 		else
 			Assert.fail("Incorrect extension provided");
 		return workbook;
+	}
+
+	/**
+	 * Read from properties file
+	 * 
+	 * @param filename
+	 *            prop file name
+	 * @param propertyname
+	 *            the key from key value pair
+	 * @return the value from key value pair
+	 * @throws IOException
+	 */
+	public String readFromPropertiesFile(String filename, String propertyname) throws IOException {
+		Properties props = new Properties();
+		FileInputStream fis = new FileInputStream("src/test/resources/" + filename + ".prop");
+		// loading properties from properties file
+		props.load(fis);
+		// reading property
+		String propertyvalue = props.getProperty(propertyname);
+		return propertyvalue;
 	}
 
 }
