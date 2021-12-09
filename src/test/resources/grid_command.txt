@@ -1,0 +1,7 @@
+Hub 4.1.0 command
+java -jar selenium-server-4.1.0.jar -role hub
+
+Node command
+java -Dwebdriver.chrome.driver=C:\Jaskirat\Automation\workspace_sapient\seleniumTest\src\test\resources\drivers\chromedriver.exe -Dwebdriver.gecko.driver=C:\Jaskirat\Automation\workspace_sapient\seleniumTest\src\test\resources\drivers\geckodriver.exe -Dwebdriver.edge.driver=C:\Jaskirat\Automation\workspace_sapient\seleniumTest\src\test\resources\drivers\msedgedriver.exe -jar selenium-server-4.1.0.jar node
+
+

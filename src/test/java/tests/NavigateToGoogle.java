@@ -1,13 +1,11 @@
 package tests;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -19,10 +17,11 @@ public class NavigateToGoogle {
 	private WebDriver driver;
 	SoftAssert sf;
 	
+	@Parameters({"browser"})
 	@BeforeClass
-	public void setUp(){
+	public void setUp(@Optional("edge")String browser){
 		webDrvMgr = new WebDriverManager();
-		driver = webDrvMgr.launchBrowser("edge");  //chrome
+		driver = webDrvMgr.launchBrowser(browser);  
 		driver.get("https://www.google.co.in");
 	}
 	
@@ -33,7 +32,8 @@ public class NavigateToGoogle {
 	
   @Test
   public void testNavigation() {
-	  String actualTitle = driver.getTitle();
+	  System.out.println(driver.getTitle());
+	  /*
 	  String actualLocale = driver.findElement(By.xpath("//div[@class='uU7dJb']")).getText();
 	  sf.assertEquals(actualTitle, "Google");
 	  sf.assertEquals(actualLocale, "India");
@@ -44,9 +44,9 @@ public class NavigateToGoogle {
 	  driver.findElement(By.xpath("//button[text()='Forgot email?']")).click();
 	  
 	 sf.assertAll();
+	 */
   }
   
-  @Test
   public void zDummyTest(){
 	  sf.assertEquals("govind", "govind");
 	  sf.assertEquals("vaibhav", "vaibhav");

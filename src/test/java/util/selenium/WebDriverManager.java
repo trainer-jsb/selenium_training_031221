@@ -3,6 +3,7 @@ package util.selenium;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 
 public class WebDriverManager {
@@ -17,6 +18,10 @@ public class WebDriverManager {
 		else if (browserName.equalsIgnoreCase("chrome")){
 			System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
 			driver = new ChromeDriver();
+		}
+		else if (browserName.equalsIgnoreCase("ff")){
+			System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver.exe");
+			driver = new FirefoxDriver();
 		}
 		else
 			Assert.fail("Invalid browser name");
